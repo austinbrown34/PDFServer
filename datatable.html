@@ -1,0 +1,83 @@
+<html>
+<head>
+
+<!-- <link rel="stylesheet" type="text/css" href="dataTables.uikit.min.css"> -->
+<link rel="stylesheet" type="text/css" href="dataTables.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="css/uikit.min.css"> -->
+<!-- <script type='text/javascript' src='data.json'></script> -->
+<script type="text/javascript" language="javascript" src="datatable.js">
+</script>
+<script type="text/javascript" language="javascript" src="jquery.js">
+	</script>
+<script type="text/javascript" language="javascript" src="dataTables.min.js">
+	</script>
+  <script type="text/javascript" language="javascript" src="js/uikit.min.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="jquery.sparkline.min.js">
+	</script>
+	<style>
+	table{
+		font: 400 10px/16px "Trebuchet MS" !important;
+	}
+	th{
+		text-align:right;
+		padding: 0px 0px !important;
+	}
+	td{
+		text-align:right;
+		padding: 2px 2px !important;
+	}
+	.total{
+		font: 800 10px/16px "Trebuchet MS" !important;
+	}
+	.left{
+		text-align:left;
+	}
+
+	.text-right{
+		position: absolute;
+	    top: 263px;
+	}
+	#stuff{
+		width: 251;
+		height: 162;
+		left: 245;
+		bottom: 140;
+	position: absolute;
+	}
+	</style>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable( {
+				"data": reportdata,
+        "paging":   false,
+        "ordering": false,
+        "info":     false,
+        "filter": false
+    } );
+		$('#stuff').css({
+			'width': reportdimensions[0],
+			'height': reportdimensions[1],
+			'left': reportcoords[0],
+			'bottom': reportcoords[1]
+		});
+} );
+</script>
+
+</head>
+<body>
+
+<div id="stuff" class="uk-table uk-table-hover uk-table-striped uk-table-condensed uk-overflow-container">
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th class="left">Cannabinoid</th>
+                <th>LOQ<span><i style="font-size: 8px;position: relative;margin-left: 8px;color: #808080;">%</i></span></th>
+                <th>Mass<span><i style="font-size: 8px;position: relative;margin-left: 8px;color: #808080;">%</i></span></th>
+                <th>Mass<span><i style="font-size: 8px;position: relative;margin-left: 8px;color: #808080;">mg/g</i></span></th>
+            </tr>
+				</thead>
+    </table>
+  </div>
+</body>
+</html>

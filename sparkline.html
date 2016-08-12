@@ -1,0 +1,61 @@
+<html>
+<head>
+
+<!-- <link rel="stylesheet" type="text/css" href="dataTables.uikit.min.css"> -->
+<link rel="stylesheet" type="text/css" href="dataTables.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="css/uikit.min.css"> -->
+<script type="text/javascript" language="javascript" src="sparkline.js">
+	</script>
+<script type="text/javascript" language="javascript" src="jquery.js">
+	</script>
+<script type="text/javascript" language="javascript" src="dataTables.min.js">
+	</script>
+  <script type="text/javascript" language="javascript" src="js/uikit.min.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="jquery.sparkline.min.js">
+	</script>
+	<style>
+
+	.bar-sparkline{
+		/*float: left;*/
+	-ms-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+	zoom: 1;
+	/*margin-top: 50px;
+	margin-left: -30px;*/
+	}
+
+
+	#stuff{
+		width: 251;
+		height: 162;
+		left: 245;
+		bottom: 140;
+	position: absolute;
+	}
+	</style>
+<script>
+$(document).ready(function() {
+		$('.bar-sparkline').sparkline(reportdata, {
+    enableTagOptions: true,
+    chartRangeMin   : 0
+});
+$('#stuff').css({
+	'width': reportdimensions[0],
+	'height': reportdimensions[1],
+	'left': reportcoords[0] - 60,
+	'bottom': reportcoords[1] - 85
+});
+} );
+</script>
+
+</head>
+<body>
+<div id="stuff">
+							 <div class="bar-sparkline" sparktype="bar" sparkbarcolor="#00CD66" sparkheight="122" sparkbarwidth="16" sparkbarspacing="5">
+							 </div>
+
+</div>
+</body>
+</html>

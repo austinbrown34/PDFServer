@@ -509,5 +509,6 @@ draw_images_on_pdf(serverImages, 'newstart/temp/newstart_filled_noplaceholders.p
 
 draw_visualization_on_pdf(vizpdfs, 'newstart/temp/newstart_filled_with_images.pdf', 'newstart/newstart_complete.pdf')
 
-f = open('newstart/newstart_complete.pdf','rb')
-conn.upload('newstart/newstart_complete.pdf',f,'pdfserver.s3-website-us-west-2.amazonaws.com')
+args = ['aws', 's3', 'cp', 'newstart/newstart_complete', 's3://pdfserver']
+
+subprocess.call(args)

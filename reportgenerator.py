@@ -223,11 +223,7 @@ def remove_all_images(filename, new_filename):
 
 def repair_pdf(broke_pdf, fixed_pdf):
     call = [
-            'docker',
-            'run',
-            '-v',
-            '/Users/austinbrown/Documents/PDFGen/:/work',
-            'mnuessler/pdftk',
+            'pdftk',
             broke_pdf,
             'output',
             fixed_pdf
@@ -313,11 +309,7 @@ def fill_out_form(fdfname, template, filledname):
     # check_output(call)
 
     call = [
-            'docker',
-            'run',
-            '-v',
-            '/Users/austinbrown/Documents/PDFGen/:/work',
-            'mnuessler/pdftk',
+            'pdftk',
             template,
             'fill_form',
             fdfname,

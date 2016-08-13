@@ -26,7 +26,36 @@ from reportlab.lib.utils import ImageReader
 import urllib2
 import shutil
 
+from io import BytesIO
+from pdfminer.pdftypes import LITERALS_DCT_DECODE
+from pdfminer.pdfcolor import LITERAL_DEVICE_GRAY
+from pdfminer.pdfcolor import LITERAL_DEVICE_RGB
+from pdfminer.pdfcolor import LITERAL_DEVICE_CMYK
 
+class MyImageWriter(ImageWriter):
+    def __init__(self, outdir):
+        self.outdir = outdir
+        self.jpgs = []
+        if not os.path.exists(self.outdir):
+            os.makedirs(self.outdir)
+        return
+    def get_jpgs(self):
+        return self.jpgs
+    def export_image(self, image):
+        stream = image.stream
+        filters = stream.get_filters()
+        (width, height) = image.srcsize
+        if len(filters) == 1 and filters[0][0] in LITERALS_DCT_DECODE:
+            ext = '.jpg'
+            self.jpgs.append(image.name+ext)
+        elif (image.bits == 1 or
+              image.bits == 8 and image.colorspace in (LITERAL_DEVICE_RGB, LITERAL_DEVICE_GRAY)):
+            ext = '.%dx%d.bmp' % (width, height)
+        else:
+            ext = '.%d.%dx%d.img' % (image.bits, width, height)
+        name = image.name+ext
+        print name
+        return name
 
 
 """
@@ -115,7 +144,7 @@ def get_image_tag(filename):
         print "Error: " + str(e)
     return tag
 
-def get_images(filename):
+def get_images(filename, jpg_names):
     pdf = file(filename, "rb").read()
     startmark = "\xff\xd8"
     startfix = 0
@@ -141,7 +170,7 @@ def get_images(filename):
         istart += startfix
         iend += endfix
         jpg = pdf[istart:iend]
-        jpgfile = file('newstart/temp/'"Im%d.jpg" % njpg, "wb")
+        jpgfile = file('newstart/temp/' + jpg_names[njpg], "wb")
         jpgfile.write(jpg)
         jpgfile.close()
         njpg += 1
@@ -164,8 +193,8 @@ def get_placeholder_image_info(filename, xmlfile, outputdir):
     outfp = file(outfile, 'w')
     codec = 'utf-8'
     laparams = LAParams()
-    imagewriter = ImageWriter(outputdir)
-    imagewriter = None
+    imagewriter = MyImageWriter(outputdir)
+    # imagewriter = None
     rsrcmgr = PDFResourceManager(caching=caching)
     device = XMLConverter(rsrcmgr, outfp, codec=codec, laparams=laparams,
                           imagewriter=imagewriter)
@@ -187,7 +216,7 @@ def get_placeholder_image_info(filename, xmlfile, outputdir):
     found_images = root.findall('.//image')
     found_image_boxes = root.xpath('.//figure[image]')
     jpg_count = 0
-    get_images(filename)
+    get_images(filename, imagewriter.get_jpgs())
     for i, e in enumerate(found_images):
         imgpth = os.path.join(outputdir, found_image_boxes[i].attrib['name'] + '.jpg')
         print imgpth

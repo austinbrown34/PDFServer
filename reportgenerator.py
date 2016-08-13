@@ -27,6 +27,10 @@ import urllib2
 import shutil
 
 
+import tinys3
+
+conn = tinys3.Connection(S3_ACCESS_KEY,S3_SECRET_KEY,tls=True)
+
 
 
 """
@@ -479,3 +483,6 @@ generate_visualizations(vizfiles)
 draw_images_on_pdf(serverImages, 'newstart/temp/newstart_filled_noplaceholders.pdf', 'newstart/temp/newstart_filled_with_images.pdf')
 
 draw_visualization_on_pdf(vizpdfs, 'newstart/temp/newstart_filled_with_images.pdf', 'newstart/newstart_complete.pdf')
+
+f = open('newstart/newstart_complete.pdf','rb')
+conn.upload('newstart/newstart_complete.pdf',f,'pdfserver.s3-website-us-west-2.amazonaws.com')

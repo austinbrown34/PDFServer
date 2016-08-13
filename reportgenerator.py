@@ -109,12 +109,43 @@ def get_image_tag(filename):
         exif_dict = piexif.load(filename)
         if piexif.ExifIFD.UserComment in exif_dict['Exif']:
             print exif_dict['Exif'][piexif.ExifIFD.UserComment]
-            tag = exif_dict['Exif'][piexif.ExifIFD.UserComment]
+            tag = exif_dict['Exif'][piexif.ExifIFD.UserComment].strip(' \t\r\n\0')
     except Exception as e:
         print filename + " has an unsupported format --- setting tag to None"
         print "Error: " + str(e)
     return tag
 
+def get_images(filename):
+    pdf = file(filename, "rb").read()
+    startmark = "\xff\xd8"
+    startfix = 0
+    endmark = "\xff\xd9"
+    endfix = 2
+    i = 0
+    njpg = 0
+    while True:
+        istream = pdf.find("stream", i)
+        if istream < 0:
+            break
+        istart = pdf.find(startmark, istream, istream+20)
+        if istart < 0:
+            i = istream+20
+            continue
+        iend = pdf.find("endstream", istart)
+        if iend < 0:
+            raise Exception("Didn't find end of stream!")
+        iend = pdf.find(endmark, iend-20)
+        if iend < 0:
+            raise Exception("Didn't find end of JPG!")
+
+        istart += startfix
+        iend += endfix
+        jpg = pdf[istart:iend]
+        jpgfile = file('newstart/temp/'"Im%d.jpg" % njpg, "wb")
+        jpgfile.write(jpg)
+        jpgfile.close()
+        njpg += 1
+        i = iend
 
 def get_placeholder_image_info(filename, xmlfile, outputdir):
     if not os.path.isdir(outputdir):
@@ -134,7 +165,7 @@ def get_placeholder_image_info(filename, xmlfile, outputdir):
     codec = 'utf-8'
     laparams = LAParams()
     imagewriter = ImageWriter(outputdir)
-    # imagewriter = None
+    imagewriter = None
     rsrcmgr = PDFResourceManager(caching=caching)
     device = XMLConverter(rsrcmgr, outfp, codec=codec, laparams=laparams,
                           imagewriter=imagewriter)
@@ -148,6 +179,7 @@ def get_placeholder_image_info(filename, xmlfile, outputdir):
                                   caching=caching, check_extractable=True):
         page.rotate = (page.rotate+rotation) % 360
         interpreter.process_page(page)
+
     fp.close()
     device.close()
     outfp.close()
@@ -155,11 +187,17 @@ def get_placeholder_image_info(filename, xmlfile, outputdir):
     found_images = root.findall('.//image')
     found_image_boxes = root.xpath('.//figure[image]')
     jpg_count = 0
+    get_images(filename)
     for i, e in enumerate(found_images):
-        tag = get_image_tag(os.path.join(outputdir, e.attrib['src']))
+        imgpth = os.path.join(outputdir, found_image_boxes[i].attrib['name'] + '.jpg')
+        print imgpth
+        if not os.path.exists(imgpth):
+            tag = None
+        else:
+            tag = get_image_tag(imgpth)
         image_info.append({
             "id": i,
-            "src": e.attrib['src'],
+            "src": imgpth,
             "height": e.attrib['height'],
             "width": e.attrib['width'],
             "bbox": found_image_boxes[i].attrib['bbox'],
@@ -168,9 +206,6 @@ def get_placeholder_image_info(filename, xmlfile, outputdir):
         if tag is not None:
             placeholder_imgs.append(jpg_count)
             jpg_count += 1
-        else:
-            if e.attrib['src'].endswith('.jpg'):
-                jpg_count += 1
     return {'image_info': image_info, 'placeholder_imgs': placeholder_imgs}
 
 

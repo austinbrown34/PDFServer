@@ -4,7 +4,7 @@ import piexif
 
 def set_image_tag(filename, tag):
     exif_ifd = {
-                piexif.ExifIFD.UserComment: unicode(tag)
+                piexif.ExifIFD.UserComment: tag.encode('UTF-8')
                 }
     exif_dict = {"Exif": exif_ifd}
     exif_bytes = piexif.dump(exif_dict)
@@ -12,14 +12,14 @@ def set_image_tag(filename, tag):
     im.save(filename, exif=exif_bytes)
 
 
-set_image_tag('placeholders/sparkline_placeholder.jpg', 'SparkLine')
+set_image_tag('placeholders/sparkline_placeholder.jpg', u'SparkLine')
 
-set_image_tag('placeholders/datatable_placeholder.jpg', 'DataTable')
+set_image_tag('placeholders/datatable_placeholder.jpg', u'DataTable')
 
-set_image_tag('placeholders/samplephoto_placeholder.jpg', 'SamplePhoto')
+set_image_tag('placeholders/samplephoto_placeholder.jpg', u'SamplePhoto')
 
-set_image_tag('placeholders/qr_placeholder.jpg', 'QR')
+set_image_tag('placeholders/qr_placeholder.jpg', u'QR')
 
-set_image_tag('placeholders/lablogo_placeholder.jpg', 'LabLogo')
+set_image_tag('placeholders/lablogo_placeholder.jpg', u'LabLogo')
 
-set_image_tag('placeholders/signature_placeholder.jpg', 'Signature')
+set_image_tag('placeholders/signature_placeholder.jpg', u'Signature')

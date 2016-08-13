@@ -32,7 +32,7 @@ from pdfminer.pdfcolor import LITERAL_DEVICE_GRAY
 from pdfminer.pdfcolor import LITERAL_DEVICE_RGB
 from pdfminer.pdfcolor import LITERAL_DEVICE_CMYK
 
-class MyImageWriter(ImageWriter):
+class MyImageWriter(object):
     def __init__(self, outdir):
         self.outdir = outdir
         self.jpgs = []

@@ -1,0 +1,189 @@
+*** Starting uWSGI 2.0.13.1 (64bit) on [Mon Aug 15 06:20:46 2016] ***
+compiled with version: 4.8.3 20140911 (Red Hat 4.8.3-9) on 12 August 2016 06:17:31
+os: Linux-4.4.15-25.57.amzn1.x86_64 #1 SMP Wed Jul 27 22:37:49 UTC 2016
+nodename: ip-172-31-20-46
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/ec2-user/PDFServer
+writing pidfile to /home/ec2-user/PDFServer/PDFServer.pid
+detected binary path: /usr/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 3914
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:3033 fd 3
+Python version: 2.7.10 (default, Jul 20 2016, 20:53:27)  [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)]
+Set PythonHome to /home/ec2-user/PDFServer
+ImportError: No module named site
+*** Starting uWSGI 2.0.13.1 (64bit) on [Mon Aug 15 06:21:36 2016] ***
+compiled with version: 4.8.3 20140911 (Red Hat 4.8.3-9) on 12 August 2016 06:17:31
+os: Linux-4.4.15-25.57.amzn1.x86_64 #1 SMP Wed Jul 27 22:37:49 UTC 2016
+nodename: ip-172-31-20-46
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/ec2-user/PDFServer
+writing pidfile to /home/ec2-user/PDFServer/PDFServer.pid
+detected binary path: /usr/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 3914
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:3033 fd 3
+Python version: 2.7.10 (default, Jul 20 2016, 20:53:27)  [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)]
+Set PythonHome to /home/ec2-user/PDFServer
+ImportError: No module named site
+*** Starting uWSGI 2.0.13.1 (64bit) on [Mon Aug 15 06:22:04 2016] ***
+compiled with version: 4.8.3 20140911 (Red Hat 4.8.3-9) on 12 August 2016 06:17:31
+os: Linux-4.4.15-25.57.amzn1.x86_64 #1 SMP Wed Jul 27 22:37:49 UTC 2016
+nodename: ip-172-31-20-46
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/ec2-user/PDFServer
+writing pidfile to /home/ec2-user/PDFServer/PDFServer.pid
+detected binary path: /usr/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 3914
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:3033 fd 3
+Python version: 2.7.10 (default, Jul 20 2016, 20:53:27)  [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)]
+Set PythonHome to /home/ec2-user/PDFServer
+ImportError: No module named site
+*** Starting uWSGI 2.0.13.1 (64bit) on [Mon Aug 15 06:22:49 2016] ***
+compiled with version: 4.8.3 20140911 (Red Hat 4.8.3-9) on 12 August 2016 06:17:31
+os: Linux-4.4.15-25.57.amzn1.x86_64 #1 SMP Wed Jul 27 22:37:49 UTC 2016
+nodename: ip-172-31-20-46
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/ec2-user/PDFServer
+writing pidfile to /home/ec2-user/PDFServer/PDFServer.pid
+detected binary path: /usr/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 3914
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:3033 fd 3
+Python version: 2.7.10 (default, Jul 20 2016, 20:53:27)  [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)]
+Set PythonHome to /home/ec2-user/PDFServer
+ImportError: No module named site
+*** Starting uWSGI 2.0.13.1 (64bit) on [Mon Aug 15 06:26:31 2016] ***
+compiled with version: 4.8.3 20140911 (Red Hat 4.8.3-9) on 12 August 2016 06:17:31
+os: Linux-4.4.15-25.57.amzn1.x86_64 #1 SMP Wed Jul 27 22:37:49 UTC 2016
+nodename: ip-172-31-20-46
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/ec2-user/PDFServer
+writing pidfile to /home/ec2-user/PDFServer/PDFServer.pid
+detected binary path: /usr/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 3914
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:3033 fd 3
+Python version: 2.7.10 (default, Jul 20 2016, 20:53:27)  [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)]
+Set PythonHome to /home/ec2-user/PDFServer
+ImportError: No module named site
+*** Starting uWSGI 2.0.13.1 (64bit) on [Mon Aug 15 06:52:20 2016] ***
+compiled with version: 4.8.3 20140911 (Red Hat 4.8.3-9) on 12 August 2016 06:17:31
+os: Linux-4.4.15-25.57.amzn1.x86_64 #1 SMP Wed Jul 27 22:37:49 UTC 2016
+nodename: ip-172-31-20-46
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/ec2-user/PDFServer
+writing pidfile to /home/ec2-user/PDFServer/PDFServer.pid
+detected binary path: /usr/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 3914
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:3033 fd 3
+Python version: 2.7.10 (default, Jul 20 2016, 20:53:27)  [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)]
+Set PythonHome to /home/ec2-user/PDFServer
+ImportError: No module named site
+*** Starting uWSGI 2.0.13.1 (64bit) on [Mon Aug 15 06:53:15 2016] ***
+compiled with version: 4.8.3 20140911 (Red Hat 4.8.3-9) on 12 August 2016 06:17:31
+os: Linux-4.4.15-25.57.amzn1.x86_64 #1 SMP Wed Jul 27 22:37:49 UTC 2016
+nodename: ip-172-31-20-46
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/ec2-user/PDFServer
+writing pidfile to /home/ec2-user/PDFServer/PDFServer.pid
+detected binary path: /usr/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 3914
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:3033 fd 3
+Python version: 2.7.10 (default, Jul 20 2016, 20:53:27)  [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)]
+Set PythonHome to /home/ec2-user/PDFServer
+ImportError: No module named site
+*** Starting uWSGI 2.0.13.1 (64bit) on [Mon Aug 15 06:55:29 2016] ***
+compiled with version: 4.8.3 20140911 (Red Hat 4.8.3-9) on 12 August 2016 06:17:31
+os: Linux-4.4.15-25.57.amzn1.x86_64 #1 SMP Wed Jul 27 22:37:49 UTC 2016
+nodename: ip-172-31-20-46
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/ec2-user/PDFServer
+writing pidfile to /home/ec2-user/PDFServer/PDFServer.pid
+detected binary path: /usr/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 3914
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:3033 fd 3
+Python version: 2.7.10 (default, Jul 20 2016, 20:53:27)  [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)]
+Set PythonHome to /home/ec2-user/PDFServer
+ImportError: No module named site
+*** Starting uWSGI 2.0.13.1 (64bit) on [Mon Aug 15 06:56:25 2016] ***
+compiled with version: 4.8.3 20140911 (Red Hat 4.8.3-9) on 12 August 2016 06:17:31
+os: Linux-4.4.15-25.57.amzn1.x86_64 #1 SMP Wed Jul 27 22:37:49 UTC 2016
+nodename: ip-172-31-20-46
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/ec2-user/PDFServer
+writing pidfile to /home/ec2-user/PDFServer/PDFServer.pid
+detected binary path: /usr/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 3914
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:3033 fd 3
+Python version: 2.7.10 (default, Jul 20 2016, 20:53:27)  [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)]
+Set PythonHome to /home/ec2-user/PDFServer
+ImportError: No module named site

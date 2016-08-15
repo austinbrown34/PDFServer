@@ -39,14 +39,27 @@ class MyImageWriter(object):
         if not os.path.exists(self.outdir):
             os.makedirs(self.outdir)
         return
+
     def get_jpgs(self):
         return self.jpgs
+
     def export_image(self, image):
         stream = image.stream
         filters = stream.get_filters()
+       # print filters[0][0]
         (width, height) = image.srcsize
-        if len(filters) == 1 and filters[0][0] in LITERALS_DCT_DECODE:
+        if len(filters) == 1 and filters[0] in LITERALS_DCT_DECODE:
+        #if len(filters) == 1 and filters[0][0] in LITERALS_DCT_DECODE:
             ext = '.jpg'
+            print 'in export_image:' + image.name+ext
+           # j = file(image.name+ext, 'wb')
+            name = image.name+ext
+            path = os.path.join(self.outdir, name)
+            fp = file(path, 'wb')
+            #if ext == '.jpg':
+            raw_data = stream.get_rawdata()
+            fp.write(raw_data)
+            fp.close()
             self.jpgs.append(image.name+ext)
         elif (image.bits == 1 or
               image.bits == 8 and image.colorspace in (LITERAL_DEVICE_RGB, LITERAL_DEVICE_GRAY)):
@@ -54,7 +67,7 @@ class MyImageWriter(object):
         else:
             ext = '.%d.%dx%d.img' % (image.bits, width, height)
         name = image.name+ext
-        print name
+        #print name
         return name
 
 
@@ -137,7 +150,7 @@ def get_image_tag(filename):
     try:
         exif_dict = piexif.load(filename)
         if piexif.ExifIFD.UserComment in exif_dict['Exif']:
-            print exif_dict['Exif'][piexif.ExifIFD.UserComment]
+            #print exif_dict['Exif'][piexif.ExifIFD.UserComment]
             tag = exif_dict['Exif'][piexif.ExifIFD.UserComment].strip(' \t\r\n\0')
     except Exception as e:
         print filename + " has an unsupported format --- setting tag to None"
@@ -145,6 +158,7 @@ def get_image_tag(filename):
     return tag
 
 def get_images(filename, jpg_names):
+    print 'get_images jpg_names: ' + str(jpg_names)
     pdf = file(filename, "rb").read()
     startmark = "\xff\xd8"
     startfix = 0
@@ -193,8 +207,10 @@ def get_placeholder_image_info(filename, xmlfile, outputdir):
     outfp = file(outfile, 'w')
     codec = 'utf-8'
     laparams = LAParams()
+    #laparams = None
     imagewriter = MyImageWriter(outputdir)
-    # imagewriter = None
+    #imagewriter = ImageWriter(outputdir)
+    #imagewriter = None
     rsrcmgr = PDFResourceManager(caching=caching)
     device = XMLConverter(rsrcmgr, outfp, codec=codec, laparams=laparams,
                           imagewriter=imagewriter)
@@ -216,25 +232,28 @@ def get_placeholder_image_info(filename, xmlfile, outputdir):
     found_images = root.findall('.//image')
     found_image_boxes = root.xpath('.//figure[image]')
     jpg_count = 0
-    get_images(filename, imagewriter.get_jpgs())
+    #get_images(filename, imagewriter.get_jpgs())
     for i, e in enumerate(found_images):
-        imgpth = os.path.join(outputdir, found_image_boxes[i].attrib['name'] + '.jpg')
-        print imgpth
+        #imgpth = os.path.join(outputdir, found_image_boxes[i].attrib['name'] + '.jpg')
+        imgpth = os.path.join(outputdir, e.attrib['src'])
+        #print imgpth
         if not os.path.exists(imgpth):
+            print "path doesnt exist - tag is none for " + imgpth
             tag = None
         else:
             tag = get_image_tag(imgpth)
-        image_info.append({
-            "id": i,
-            "src": imgpth,
-            "height": e.attrib['height'],
-            "width": e.attrib['width'],
-            "bbox": found_image_boxes[i].attrib['bbox'],
-            "tag": tag
-            })
-        if tag is not None:
-            placeholder_imgs.append(jpg_count)
+            image_info.append({
+                "id": i,
+                "src": imgpth,
+                "height": e.attrib['height'],
+                "width": e.attrib['width'],
+                "bbox": found_image_boxes[i].attrib['bbox'],
+                "tag": tag
+                })
+            if tag is not None:
+                placeholder_imgs.append(jpg_count)
             jpg_count += 1
+
     return {'image_info': image_info, 'placeholder_imgs': placeholder_imgs}
 
 
@@ -509,6 +528,6 @@ draw_images_on_pdf(serverImages, 'newstart/temp/newstart_filled_noplaceholders.p
 
 draw_visualization_on_pdf(vizpdfs, 'newstart/temp/newstart_filled_with_images.pdf', 'newstart/newstart_complete.pdf')
 
-args = ['aws', 's3', 'cp', 'newstart/newstart_complete', 's3://pdfserver']
+args = ['aws', 's3', 'cp', 'newstart', 's3://pdfserver', '--recursive']
 
 subprocess.call(args)
